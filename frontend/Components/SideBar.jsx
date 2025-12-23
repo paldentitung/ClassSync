@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import {
   FaTachometerAlt,
   FaCalendarAlt,
@@ -10,9 +10,14 @@ import {
   FaChartLine,
   FaCog,
   FaSchool,
+  FaAngleLeft,
+  FaAngleRight,
 } from "react-icons/fa";
 import { NavLink } from "react-router-dom";
+
 const SideBar = () => {
+  const [isExpanded, setIsExpanded] = useState(true);
+
   const sidebarItems = [
     { id: 1, name: "Dashboard", icon: FaTachometerAlt, link: "/" },
     { id: 2, name: "Timetable", icon: FaCalendarAlt, link: "/timetable" },
@@ -24,35 +29,81 @@ const SideBar = () => {
     { id: 8, name: "Analytics", icon: FaChartLine, link: "/analytics" },
     { id: 9, name: "Settings", icon: FaCog, link: "/settings" },
   ];
+
   return (
-    <div className="bg-linear-to-r from-(--mainColor) to-(--secondaryColor) text-white min-h-screen p-4 flex flex-col gap-4">
-      <div className="flex items-center gap-2 p-2 mt-3">
-        <FaSchool size={25} />
-        <h1 className="text-2xl font-semibold">Class Sync</h1>
+    <div
+      className={`bg-linear-to-b from-(--mainColor) to-(--secondaryColor) text-white min-h-screen flex flex-col transition-all duration-500 ease-in-out ${
+        isExpanded ? "w-64" : "w-20"
+      }`}
+    >
+      {/* Logo & Title - Smooth fade + slide */}
+      <div className="flex items-center gap-4 px-6 py-8 border-b border-white/10 overflow-hidden">
+        <FaSchool size={32} className="shrink-0" />
+        <h1
+          className={`text-2xl font-bold tracking-tight whitespace-nowrap transition-all duration-500 ease-in-out ${
+            isExpanded
+              ? "opacity-100 translate-x-0"
+              : "opacity-0 -translate-x-4"
+          }`}
+        >
+          Class Sync
+        </h1>
       </div>
 
-      <ul className="flex flex-col gap-2 ">
-        {sidebarItems.map((items) => {
-          const Icon = items.icon;
-          return (
-            <li
-              key={items.id}
-              className="flex items-center gap-2 transition-all duration-300 hover:bg-(--secondaryColor) hover:cursor-pointer  rounded "
-            >
-              <NavLink
-                to={items.link}
-                className={({ isActive }) =>
-                  `flex items-center gap-2 p-3 rounded w-full  ${
-                    isActive ? "bg-(--secondaryColor)" : ""
-                  } hover:bg-secondaryColor`
-                }
-              >
-                <Icon /> {items.name}
-              </NavLink>
-            </li>
-          );
-        })}
-      </ul>
+      {/* Navigation */}
+      <nav className="flex-1 px-4 py-6">
+        <ul className="space-y-2">
+          {sidebarItems.map((item) => {
+            const Icon = item.icon;
+            return (
+              <li key={item.id}>
+                <NavLink
+                  to={item.link}
+                  className={({ isActive }) =>
+                    `flex items-center gap-4 px-4 py-3 rounded-xl transition-all duration-300 group ${
+                      isActive
+                        ? "bg-white/20 shadow-lg font-medium"
+                        : "hover:bg-white/10"
+                    }`
+                  }
+                >
+                  <Icon size={22} className="shrink-0" />
+                  <span
+                    className={`whitespace-nowrap transition-all duration-500 ease-in-out ${
+                      isExpanded
+                        ? "opacity-100 translate-x-0 w-auto"
+                        : "opacity-0 -translate-x-4 w-0"
+                    }`}
+                  >
+                    {item.name}
+                  </span>
+                </NavLink>
+              </li>
+            );
+          })}
+        </ul>
+      </nav>
+
+      {/* Toggle Button - Fixed at bottom */}
+      <div className="p-4 border-t border-white/10">
+        <button
+          onClick={() => setIsExpanded(!isExpanded)}
+          className="flex items-center justify-center w-full py-3 rounded-xl hover:bg-white/10 transition-all duration-300 group"
+          aria-label={isExpanded ? "Collapse sidebar" : "Expand sidebar"}
+        >
+          {isExpanded ? (
+            <FaAngleLeft
+              size={20}
+              className="transition-transform duration-300 group-hover:-translate-x-1"
+            />
+          ) : (
+            <FaAngleRight
+              size={20}
+              className="transition-transform duration-300 group-hover:translate-x-1"
+            />
+          )}
+        </button>
+      </div>
     </div>
   );
 };
