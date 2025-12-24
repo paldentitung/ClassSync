@@ -1,7 +1,9 @@
-import React from "react";
+import React, { useContext } from "react";
 import { useNavigate } from "react-router-dom";
+import { RoleContext } from "../Context/RoleContext";
 const RoleSelection = () => {
   const navigate = useNavigate();
+  const { setRole } = useContext(RoleContext);
   return (
     <div className="min-h-screen flex flex-col justify-center items-center bg-gray-100 gap-8 ">
       <div className=" shadow-md p-4 h-full w-full max-w-100 rounded-md flex justify-center items-center flex-col gap-6">
@@ -9,13 +11,19 @@ const RoleSelection = () => {
         <p className="text-gray-600">Choose your role to continue</p>
         <div className="flex gap-6">
           <button
-            onClick={() => navigate("/dashboard/student")}
+            onClick={() => {
+              navigate("/dashboard/student");
+              setRole(() => setRole("student"));
+            }}
             className="px-8 py-4 bg-(--mainColor) text-white rounded-xl  hover:cursor-pointer transition"
           >
             Student
           </button>
           <button
-            onClick={() => navigate("/dashboard/teacher")}
+            onClick={() => {
+              navigate("/dashboard/teacher");
+              setRole(() => setRole("teacher"));
+            }}
             className="px-8 py-4 bg-green-600 text-white rounded-xl hover:bg-green-700 transition hover:cursor-pointer"
           >
             Teacher

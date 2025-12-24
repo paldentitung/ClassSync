@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import {
   FaTachometerAlt,
   FaCalendarAlt,
@@ -14,12 +14,19 @@ import {
   FaAngleRight,
 } from "react-icons/fa";
 import { NavLink } from "react-router-dom";
+import { RoleContext } from "../Context/RoleContext";
 
 const SideBar = () => {
   const [isExpanded, setIsExpanded] = useState(true);
+  const { role } = useContext(RoleContext);
 
   const sidebarItems = [
-    { id: 1, name: "Dashboard", icon: FaTachometerAlt, link: "/" },
+    {
+      id: 1,
+      name: "Dashboard",
+      icon: FaTachometerAlt,
+      link: role === "student" ? "/dashboard/student" : "/dashboard/teacher",
+    },
     { id: 2, name: "Timetable", icon: FaCalendarAlt, link: "/timetable" },
     { id: 3, name: "Subjects", icon: FaBook, link: "/subjects" },
     { id: 4, name: "Assignments", icon: FaClipboardList, link: "/assignments" },
