@@ -1,6 +1,7 @@
 import React from "react";
 import MainLayout from "../MainLayout/MainLayout";
-import Dashboard from "../Pages/Dashboard";
+import DashboardStudent from "../Pages/DashboardStudent";
+import DashboardTeacher from "../Pages/DashboardTeacher";
 import Timetable from "../Pages/Timetable";
 import Subjects from "../Pages/Subjects";
 import Assignments from "../Pages/Assignments";
@@ -18,7 +19,15 @@ const App = () => {
         path="/"
         element={
           <MainLayout>
-            <Dashboard />
+            <DashboardStudent />
+          </MainLayout>
+        }
+      />
+      <Route
+        path="/teacherdashboard"
+        element={
+          <MainLayout>
+            <DashboardTeacher />
           </MainLayout>
         }
       />

@@ -11,7 +11,7 @@ import {
   FaBell,
 } from "react-icons/fa";
 
-const Dashboard = () => {
+const DashboardStudent = () => {
   return (
     <section>
       <Header title="Dashboard" />
@@ -149,7 +149,7 @@ const Dashboard = () => {
                 <span className="border border-gray-500 px-2 py-3 rounded-md transition-all duration-300 hover:bg-gray-100 text-sm">
                   03 hours
                 </span>
-                <span className="border border-gray-500 px-2 py-3 rounded-md transition-all duration-300 hover:bg-gray-100 text-sm">
+                <span className="border border-gray-500 px-2 py-3 rounded-md transition-all duration-300 hover:bg-gray-100 text-sfm">
                   12 min
                 </span>
               </div>
@@ -189,4 +189,4 @@ const Dashboard = () => {
   );
 };
 
-export default Dashboard;
+export default DashboardStudent;
