@@ -1,6 +1,7 @@
 import React from "react";
 import { FaBook } from "react-icons/fa";
 import MainButton from "../../Components/MainButton";
+import SecondaryButton from "../../Components/SecondaryButton";
 const TeacherSubject = () => {
   const teacherSubjects = [
     { id: 1, name: "Internet Technology", class: "BCSIT 2nd Semester" },
@@ -29,9 +30,7 @@ const TeacherSubject = () => {
             {/* Teacher actions */}
             <div className="flex gap-2">
               <MainButton name="Notes" />
-              <button className="px-3 py-1 text-sm bg-green-600 text-white rounded">
-                Assignments
-              </button>
+              <SecondaryButton name="Assignments" />
             </div>
           </div>
         ))}

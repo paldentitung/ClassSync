@@ -1,5 +1,6 @@
 import React from "react";
 import MainButton from "../../Components/MainButton";
+import SecondaryButton from "../../Components/SecondaryButton";
 const TeacherAssignment = () => {
   const teacherAssignments = [
     {
@@ -42,12 +43,8 @@ const TeacherAssignment = () => {
           </div>
 
           <div className="flex justify-between items-center">
-            <button className="px-3 py-1 text-sm bg-(--secondaryColor) text-white rounded">
-              View Submissions
-            </button>
-            <button className="px-3 py-1 text-sm bg-green-600 text-white rounded">
-              Edit
-            </button>
+            <MainButton name="View Submissions" />
+            <SecondaryButton name="Edit" />
           </div>
         </div>
       ))}
