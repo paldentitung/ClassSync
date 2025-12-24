@@ -9,7 +9,7 @@ const Subjects = () => {
   return (
     <div className="min-h-screen bg-gray-100">
       <Header title="My Subjects" />
-      <div className="">
+      <div className="p-6">
         {role === "student" ? <StudentSubjects /> : <TeacherSubject />}
       </div>
     </div>
