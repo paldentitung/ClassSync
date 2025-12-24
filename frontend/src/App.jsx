@@ -1,5 +1,6 @@
 import React from "react";
 import MainLayout from "../MainLayout/MainLayout";
+import RoleSelection from "../Pages/RoleSelection";
 import DashboardStudent from "../Pages/DashboardStudent";
 import DashboardTeacher from "../Pages/DashboardTeacher";
 import Timetable from "../Pages/Timetable";
@@ -15,8 +16,9 @@ import { Route, Routes } from "react-router-dom";
 const App = () => {
   return (
     <Routes>
+      <Route path="/" element={<RoleSelection />} />
       <Route
-        path="/"
+        path="/dashboard/student"
         element={
           <MainLayout>
             <DashboardStudent />
@@ -24,7 +26,7 @@ const App = () => {
         }
       />
       <Route
-        path="/teacherdashboard"
+        path="/dashboard/teacher"
         element={
           <MainLayout>
             <DashboardTeacher />
