@@ -7,9 +7,9 @@ const MainLayout = ({ children }) => {
       <aside className="h-full ">
         <SideBar />
       </aside>
-      <div className="flex-1 flex flex-col gap-4 ">
-        <div>{children}</div>
-      </div>
+      <section className="flex-1 flex flex-col gap-4 ">
+        <section>{children}</section>
+      </section>
     </div>
   );
 };

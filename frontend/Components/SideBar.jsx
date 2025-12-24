@@ -32,7 +32,7 @@ const SideBar = () => {
 
   return (
     <div
-      className={`bg-linear-to-b from-(--mainColor) to-(--secondaryColor) text-white min-h-screen flex flex-col transition-all duration-500 ease-in-out ${
+      className={`bg-linear-to-b from-(--mainColor)  to-(--secondaryColor) text-white min-h-screen flex flex-col transition-all duration-500 ease-in-out ${
         isExpanded ? "w-64" : "w-20"
       }`}
     >
