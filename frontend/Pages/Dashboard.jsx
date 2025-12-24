@@ -1,6 +1,15 @@
 import React from "react";
 import Header from "../Components/Header";
-import { FaBook, FaClipboardList, FaTasks, FaCalendar } from "react-icons/fa";
+import MainButton from "../Components/MainButton";
+import {
+  FaBook,
+  FaClipboardList,
+  FaTasks,
+  FaCalendar,
+  FaFileAlt,
+  FaCalendarAlt,
+  FaBell,
+} from "react-icons/fa";
 
 const Dashboard = () => {
   return (
@@ -8,48 +17,39 @@ const Dashboard = () => {
       <Header title="Dashboard" />
       <div className="p-6 flex flex-col gap-5">
         <div>
-          <span className="text-2xl">Welcome Back, Palden!</span>
+          <span className="text-2xl font-semibold">Welcome Back, Palden!</span>
         </div>
 
-        {/* overview cards */}
+        {/* Overview Cards */}
         <section className="grid grid-cols-1 md:grid-cols-3 gap-3">
-          {/* Total Subjects */}
           <div className="flex justify-between items-center bg-[#2765d9]/80 h-32 rounded-2xl px-5 py-3 text-white transition-all duration-300 shadow-md hover:shadow-lg">
             <div className="flex flex-col gap-3">
               <span className="text-sm md:text-lg">Total Subjects</span>
               <span className="text-2xl md:text-4xl">5</span>
             </div>
-            <div>
-              <FaBook size={30} />
-            </div>
+            <FaBook size={30} />
           </div>
 
-          {/* Pending Assignments */}
           <div className="flex justify-between items-center bg-amber-500 h-32 rounded-2xl px-5 py-3 text-white transition-all duration-300 shadow-md hover:shadow-lg">
             <div className="flex flex-col gap-3">
               <span className="text-sm md:text-lg">Pending Assignments</span>
               <span className="text-2xl md:text-4xl">12</span>
             </div>
-            <div>
-              <FaClipboardList size={30} />
-            </div>
+            <FaClipboardList size={30} />
           </div>
 
-          {/* Completed Assignments */}
           <div className="flex justify-between items-center bg-[#69ab1f] h-32 rounded-2xl px-5 py-3 text-white transition-all duration-300 shadow-md hover:shadow-lg">
             <div className="flex flex-col gap-3">
               <span className="text-sm md:text-lg">Completed Assignments</span>
               <span className="text-2xl md:text-4xl">6</span>
             </div>
-            <div>
-              <FaTasks size={30} />
-            </div>
+            <FaTasks size={30} />
           </div>
         </section>
 
-        {/*  */}
+        {/* Dashboard Content */}
         <section className="grid grid-cols-1 md:grid-cols-3 gap-5">
-          {/* Left Card: Today's Classes */}
+          {/* Today's Classes */}
           <div className="col-span-1 md:col-span-1 shadow-md bg-white p-4 rounded-xl flex flex-col gap-4">
             <span className="text-lg font-semibold text-gray-800">
               Today's Classes
@@ -60,12 +60,19 @@ const Dashboard = () => {
                   time: "10:00 AM",
                   subject: "Data Structures",
                   prof: "Prof. Smith",
+                  icon: <FaBook className="text-blue-500" />,
                 },
-                { time: "11:00 AM", subject: "Algorithms", prof: "Prof. Doe" },
+                {
+                  time: "11:00 AM",
+                  subject: "Algorithms",
+                  prof: "Prof. Doe",
+                  icon: <FaBook className="text-blue-500" />,
+                },
                 {
                   time: "12:00 PM",
                   subject: "Database Systems",
                   prof: "Prof. Lee",
+                  icon: <FaBook className="text-blue-500" />,
                 },
               ].map((cls, idx) => (
                 <div
@@ -73,6 +80,7 @@ const Dashboard = () => {
                   className="flex justify-between items-center p-3 rounded-md hover:bg-gray-100 transition"
                 >
                   <div className="flex gap-2 items-center">
+                    {cls.icon}
                     <span className="font-medium text-gray-700">
                       {cls.time}
                     </span>
@@ -86,59 +94,94 @@ const Dashboard = () => {
             </div>
           </div>
 
-          {/* Right Side */}
-          <div className="col-span-1 md:col-span-2 shadow-md bg-white p-4 rounded-xl">
+          {/* Upcoming Assignments */}
+          <div className="col-span-1 md:col-span-2 shadow-md bg-white p-4 rounded-xl flex flex-col gap-3">
             <span className="text-lg font-semibold text-gray-800 mb-2 block">
-              Announcements
+              Upcoming Assignments
             </span>
-            <p className="text-gray-700">
-              Lorem ipsum dolor, sit amet consectetur adipisicing elit. Nemo
-              maxime reprehenderit nisi veritatis libero architecto ipsam
-              recusandae, maiores rem laudantium deserunt consequuntur quos
-              quae. Perferendis doloribus perspiciatis similique sapiente quis!
-            </p>
+            <div className="flex flex-col gap-2">
+              {[
+                { name: "Database Project", due: "April 25" },
+                { name: "Math Assignment", due: "April 26" },
+                { name: "React Project", due: "April 28" },
+              ].map((assignment, idx) => (
+                <div
+                  key={idx}
+                  className="flex justify-between items-center border-gray-300 px-2 py-3 rounded-md transition-all duration-300 hover:bg-gray-100"
+                >
+                  <div className="flex items-center gap-2">
+                    <FaFileAlt className="text-blue-500" />
+                    <span>{assignment.name}</span>
+                  </div>
+                  <span className="text-sm text-gray-500">
+                    Due: {assignment.due}
+                  </span>
+                </div>
+              ))}
+            </div>
+            <div>
+              <MainButton name="View All" />
+            </div>
           </div>
 
-          {/*  */}
+          {/* Exams / Countdown */}
           <div className="col-span-1 md:col-span-1 shadow-md bg-white p-4 rounded-xl flex flex-col gap-4">
             <span className="text-lg font-semibold text-gray-800">
-              Today's Classes
+              Upcoming Exam
             </span>
-
-            <div>
+            <div className="flex flex-col gap-3 p-2">
               <div className="flex justify-between items-center">
-                <div className="flex  items-center gap-2">
-                  <FaCalendar color="text-(--mainColor)" size={15} />
+                <div className="flex items-center gap-2">
+                  <FaCalendarAlt className="" size={18} />
                   <span>Mathematics Midterm</span>
                 </div>
-                <div className="text-sm text-gray-500">Date:May 10,2024</div>
+                <div className="text-sm text-gray-500">Date: May 10, 2024</div>
               </div>
 
-              <div className="flex  flex-col gap-3 p-2 ">
-                <span className="bg-(--mainColor) w-38 px-7 py-2 text-white rounded-md">
-                  in 14 days
+              <span className="bg-(--mainColor) w-fit px-5 py-2 text-white rounded-md">
+                in 14 days
+              </span>
+
+              <div className="flex gap-2">
+                <span className="border border-gray-500 px-2 py-3 rounded-md transition-all duration-300 hover:bg-gray-100 text-sm">
+                  14 Days
                 </span>
-                <div className="flex gap-2">
-                  <span className="border border-gray-500 p-2 rounded-md text-sm">
-                    14 Days
-                  </span>
-                  <span className="border border-gray-500 p-2 rounded-md text-sm">
-                    03 hours
-                  </span>
-                  <span className="border border-gray-500 p-2 rounded-md text-sm">
-                    12 min
-                  </span>
-                </div>
+                <span className="border border-gray-500 px-2 py-3 rounded-md transition-all duration-300 hover:bg-gray-100 text-sm">
+                  03 hours
+                </span>
+                <span className="border border-gray-500 px-2 py-3 rounded-md transition-all duration-300 hover:bg-gray-100 text-sm">
+                  12 min
+                </span>
               </div>
             </div>
           </div>
 
-          {/*  */}
-          <div className="col-span-1 md:col-span-2 shadow-md bg-white p-4 rounded-xl">
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Nihil
-            molestias aperiam suscipit, hic eos perferendis repudiandae ratione
-            quasi, voluptatibus, sequi veniam mollitia laboriosam at sapiente
-            error soluta maiores quam ducimus.
+          {/* Upcoming Events */}
+          <div className="col-span-1 md:col-span-2 shadow-md bg-white p-4 rounded-xl flex flex-col gap-2">
+            <span className="text-lg font-semibold text-gray-800 mb-2 block">
+              Upcoming Events
+            </span>
+
+            <div className="flex flex-col gap-3">
+              {[
+                { event: "Seminar: AI & Technology", date: "April 30, 2024" },
+                { event: "Workshop: React Advanced", date: "May 02, 2024" },
+              ].map((evt, idx) => (
+                <div
+                  key={idx}
+                  className="flex justify-between items-center border-gray-300 px-2 py-3 rounded-md transition-all duration-300 hover:bg-gray-100"
+                >
+                  <div className="flex items-center gap-2">
+                    <FaCalendar className="text-purple-500" />
+                    <span>{evt.event}</span>
+                  </div>
+                  <span>{evt.date}</span>
+                </div>
+              ))}
+            </div>
+            <div>
+              <MainButton name="View Calendar" />
+            </div>
           </div>
         </section>
       </div>

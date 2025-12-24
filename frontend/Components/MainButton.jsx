@@ -1,0 +1,11 @@
+import React from "react";
+
+const MainButton = ({ name }) => {
+  return (
+    <button className="px-8 py-2 border-0 shadow-md rounded-md bg-(--mainColor) text-white opacity-85 transition-all duration-300 hover:cursor-pointer hover:shadow-lg hover:opacity-100">
+      {name}
+    </button>
+  );
+};
+
+export default MainButton;
