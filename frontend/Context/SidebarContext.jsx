@@ -4,9 +4,11 @@ export const SideBarContext = createContext();
 
 export const SidebarProvider = ({ children }) => {
   const [isExpanded, setIsExpanded] = useState(true);
-
+  const [showSideBar, setShowSideBar] = useState(true);
   return (
-    <SideBarContext.Provider value={{ isExpanded, setIsExpanded }}>
+    <SideBarContext.Provider
+      value={{ isExpanded, setIsExpanded, setShowSideBar, showSideBar }}
+    >
       {children}
     </SideBarContext.Provider>
   );
