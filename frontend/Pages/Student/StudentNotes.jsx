@@ -35,7 +35,7 @@ const StudentNotes = () => {
             key={note.id}
             className="group bg-white rounded-3xl shadow-md hover:shadow-lg transition overflow-hidden border border-gray-100 flex flex-col"
           >
-            <div className="bg-gradient-to-br from-blue-50 to-indigo-50 p-8 flex items-center justify-center">
+            <div className="bg-linear-to-br from-blue-50 to-indigo-50 p-8 flex items-center justify-center">
               <span className="text-blue-500 text-5xl">📄</span>
             </div>
 
