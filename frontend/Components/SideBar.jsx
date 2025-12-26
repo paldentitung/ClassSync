@@ -41,7 +41,7 @@ const SideBar = ({ mobile }) => {
   return (
     <>
       <div
-        className={`fixed top-0 left-0 h-full bg-linear-to-b from-(--mainColor) to-(--secondaryColor) text-white flex flex-col transition-all duration-300 ease-in-out z-40
+        className={`fixed top-0 left-0 h-full bg-linear-to-b from-(--mainColor) to-(--secondaryColor) text-white flex flex-col transition-all duration-500 ease-in-out z-40
         ${isExpanded ? "w-64" : "w-20"}
     ${mobile ? "flex md:hidden" : "hidden md:flex"} 
       `}
