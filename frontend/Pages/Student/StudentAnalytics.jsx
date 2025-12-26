@@ -31,7 +31,7 @@ const StudentAnalytics = () => {
     { name: "Upcoming", value: stats.examsUpcoming },
   ];
 
-  const COLORS = ["#22c55e", "#f97316"];
+  const COLORS = ["#3b82f6", "#f59e0b", "#10b981"];
 
   return (
     <div className="p-6 flex flex-col space-y-5">

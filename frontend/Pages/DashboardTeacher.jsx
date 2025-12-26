@@ -9,7 +9,17 @@ import {
   FaFileAlt,
   FaCalendar,
 } from "react-icons/fa";
-
+import {
+  BarChart,
+  Bar,
+  XAxis,
+  YAxis,
+  Tooltip,
+  ResponsiveContainer,
+  PieChart,
+  Pie,
+  Cell,
+} from "recharts";
 const DashboardTeacher = () => {
   // Example data for teacher
   const todayClasses = [
@@ -33,7 +43,21 @@ const DashboardTeacher = () => {
     { event: "Seminar: AI & Technology", date: "April 30, 2024" },
     { event: "Workshop: React Advanced", date: "May 02, 2024" },
   ];
+  const barData = [
+    { name: "Assignments Submitted", value: 45 },
+    { name: "Assignments Pending", value: 12 },
+    { name: "Exams Completed", value: 8 },
+    { name: "Exams Upcoming", value: 3 },
+    { name: "Notes Uploaded", value: 20 },
+  ];
 
+  const pieData = [
+    { name: "Assignments", value: 50 },
+    { name: "Exams", value: 30 },
+    { name: "Notes", value: 20 },
+  ];
+
+  const COLORS = ["#3b82f6", "#f59e0b", "#10b981"];
   return (
     <section>
       <Header title="Dashboard" />
@@ -74,6 +98,49 @@ const DashboardTeacher = () => {
               </span>
             </div>
             <FaTasks size={30} />
+          </div>
+        </section>
+        <section className="grid grid-cols-1 md:grid-cols-2 gap-6 mt-6">
+          {/* Bar Chart */}
+          <div className="bg-white p-5 rounded-2xl shadow">
+            <h3 className="text-xl font-semibold mb-4">Teacher Overview</h3>
+            <ResponsiveContainer width="100%" height={250}>
+              <BarChart data={barData}>
+                <XAxis dataKey="name" />
+                <YAxis />
+                <Tooltip />
+                <Bar dataKey="value" fill="#3b82f6" radius={[8, 8, 8, 8]} />
+              </BarChart>
+            </ResponsiveContainer>
+          </div>
+
+          {/* Pie Chart */}
+          <div className="bg-white p-6 rounded-2xl shadow">
+            <h3 className="text-xl font-semibold mb-4">
+              Activity Distribution
+            </h3>
+            <ResponsiveContainer width="100%" height={250}>
+              <PieChart>
+                <Pie
+                  data={pieData}
+                  dataKey="value"
+                  nameKey="name"
+                  cx="50%"
+                  cy="50%"
+                  outerRadius={80}
+                  fill="#8884d8"
+                  label
+                >
+                  {pieData.map((_, index) => (
+                    <Cell
+                      key={`cell-${index}`}
+                      fill={COLORS[index % COLORS.length]}
+                    />
+                  ))}
+                </Pie>
+                <Tooltip />
+              </PieChart>
+            </ResponsiveContainer>
           </div>
         </section>
 
