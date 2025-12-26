@@ -8,7 +8,6 @@ import Subjects from "../Pages/Subjects";
 import Assignments from "../Pages/Assignments";
 import Notes from "../Pages/Notes";
 import Exams from "../Pages/Exams";
-import StudyPlanner from "../Pages/StudyPlanner";
 import Analytics from "../Pages/Analytics";
 import Settings from "../Pages/Settings";
 import { Route, Routes } from "react-router-dom";
@@ -73,14 +72,7 @@ const App = () => {
           </MainLayout>
         }
       />
-      <Route
-        path="/study-planner"
-        element={
-          <MainLayout>
-            <StudyPlanner />
-          </MainLayout>
-        }
-      />
+
       <Route
         path="/analytics"
         element={

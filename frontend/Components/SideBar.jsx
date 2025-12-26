@@ -32,7 +32,6 @@ const SideBar = () => {
     { id: 4, name: "Assignments", icon: FaClipboardList, link: "/assignments" },
     { id: 5, name: "Notes", icon: FaStickyNote, link: "/notes" },
     { id: 6, name: "Exams", icon: FaFileAlt, link: "/exams" },
-    { id: 7, name: "Study Planner", icon: FaTasks, link: "/study-planner" },
     { id: 8, name: "Analytics", icon: FaChartLine, link: "/analytics" },
     { id: 9, name: "Settings", icon: FaCog, link: "/settings" },
   ];
