@@ -15,10 +15,11 @@ import {
 } from "react-icons/fa";
 import { NavLink } from "react-router-dom";
 import { RoleContext } from "../Context/RoleContext";
+import { SideBarContext } from "../Context/SidebarContext";
 
 const SideBar = () => {
-  const [isExpanded, setIsExpanded] = useState(true);
   const { role } = useContext(RoleContext);
+  const { isExpanded, setIsExpanded } = useContext(SideBarContext);
 
   const sidebarItems = [
     {
@@ -38,8 +39,8 @@ const SideBar = () => {
 
   return (
     <div
-      className={`bg-linear-to-b from-(--mainColor)  to-(--secondaryColor) text-white min-h-screen flex flex-col transition-all duration-500 ease-in-out ${
-        isExpanded ? "w-64" : "w-20"
+      className={`fixed top-0 left-0 h-full bg-linear-to-b from-(--mainColor) to-(--secondaryColor) text-white flex flex-col transition-all duration-500 ease-in-out z-40 ${
+        isExpanded ? "w-64 " : "w-20 "
       }`}
     >
       {/* Logo & Title - Smooth fade + slide */}

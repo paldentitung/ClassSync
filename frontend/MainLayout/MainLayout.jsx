@@ -1,15 +1,20 @@
-import React from "react";
+import React, { useContext } from "react";
 import SideBar from "../Components/SideBar";
-import Header from "../Components/Header";
+import { SideBarContext } from "../Context/SidebarContext";
 const MainLayout = ({ children }) => {
+  const { isExpanded } = useContext(SideBarContext);
   return (
-    <div className="min-h-screen flex">
-      <aside className="h-full ">
+    <div className="min-h-screen flex overflow-hidden">
+      <aside className={` h-full`}>
         <SideBar />
       </aside>
-      <section className="flex-1 flex flex-col gap-4 ">
-        <section>{children}</section>
-      </section>
+      <main
+        className={`flex-1 flex flex-col gap-4 transition-all duration-500 ease-in-out ${
+          isExpanded ? "ml-64" : "ml-20"
+        }`}
+      >
+        {children}
+      </main>
     </div>
   );
 };
