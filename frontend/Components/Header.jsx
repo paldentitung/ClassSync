@@ -22,6 +22,10 @@ const Header = ({ title }) => {
       </div>
       {showSideBar && (
         <div className="fixed w-full h-full inset-0 z-50">
+          <div
+            className=" absolute inset-0 bg-black/50"
+            onClick={() => setShowSideBar(false)}
+          ></div>
           <SideBar mobile={true} />
         </div>
       )}
