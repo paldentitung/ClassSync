@@ -29,7 +29,10 @@ const TeacherAssignment = () => {
   return (
     <div className="grid grid-cols-1 md:grid-cols-3 gap-3  ">
       {teacherAssignments.map((assignment) => (
-        <div className="flex  flex-col bg-white p-4 gap-3 rounded-2xl shadow transition-all duration-300 hover:shadow-md ">
+        <div
+          key={assignment.id}
+          className="flex  flex-col bg-white p-4 gap-3 rounded-2xl shadow transition-all duration-300 hover:shadow-md "
+        >
           <div className="flex flex-col gap-1">
             <span className="font-semibold text-[18px]">
               {assignment.title}

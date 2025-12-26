@@ -29,8 +29,8 @@ const DashboardStudent = () => {
   ];
 
   const examData = [
-    { name: "Completed", value: 70 },
-    { name: "Upcoming", value: 89 },
+    { id: 1, name: "Completed", value: 70 },
+    { id: 2, name: "Upcoming", value: 89 },
   ];
   const COLORS = ["#22c55e", "#f97316"];
 
@@ -96,8 +96,12 @@ const DashboardStudent = () => {
                     cy="50%"
                     outerRadius={90}
                   >
-                    {examData.map((_, index) => (
-                      <Cell dataKey="value" fill={COLORS[index]} />
+                    {examData.map((data, index) => (
+                      <Cell
+                        dataKey="value"
+                        fill={COLORS[index]}
+                        key={data.id}
+                      />
                     ))}
                   </Pie>
                   <Tooltip />
