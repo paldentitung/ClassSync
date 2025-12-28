@@ -31,9 +31,9 @@ const TeacherNotes = () => {
   ];
 
   return (
-    <div className="max-w-7xl mx-auto px-4 py-8 space-y-12">
+    <div className="md:px-10 md:py-5 space-y-5">
       {/* Upload Area */}
-      <div className="group relative bg-white border-2 border-dashed border-gray-300 rounded-3xl p-12 text-center cursor-pointer hover:border-blue-500 hover:bg-blue-50 transition-all duration-300 shadow-lg hover:shadow-xl">
+      <div className="group relative bg-white border-2 border-dashed border-gray-300 rounded-3xl p-12 text-center cursor-pointer hover:border-blue-500 hover:bg-blue-50 transition-all duration-300 shadow-sm hover:shadow-md">
         <input
           type="file"
           className="absolute inset-0 opacity-0 cursor-pointer"
@@ -49,11 +49,11 @@ const TeacherNotes = () => {
       </div>
 
       {/* Notes Grid */}
-      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-8">
+      <div className="grid grid-cols-1  md:grid-cols-2 lg:grid-cols-4 gap-8">
         {teacherNotes.map((note) => (
           <div
             key={note.id}
-            className="group bg-white rounded-2xl shadow-md hover:shadow-lg transition-all duration-300 overflow-hidden border border-gray-100 flex flex-col"
+            className="group bg-white rounded-2xl shadow-sm hover:shadow-md transition-all duration-300 overflow-hidden border border-gray-100 flex flex-col"
           >
             {/* Header / Preview */}
             <div className="bg-linear-to-br from-blue-50 to-indigo-50 p-8 flex items-center justify-center">

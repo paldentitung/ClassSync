@@ -34,7 +34,7 @@ const StudentAnalytics = () => {
   const COLORS = ["#3b82f6", "#f59e0b", "#10b981"];
 
   return (
-    <div className="p-6 flex flex-col space-y-5">
+    <div className=" p-3 md:p-6 flex flex-col space-y-5">
       <h2 className="text-3xl font-bold mb-8">My Analytics</h2>
 
       {/* Charts Section */}

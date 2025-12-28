@@ -34,7 +34,7 @@ const TeacherAnalytics = () => {
 
   return (
     <div className="space-y-5">
-      <h2 className="text-3xl font-bold mb-8">Analytics Overview</h2>
+      <h2 className="text-2xl font-bold mb-8">Analytics Overview</h2>
 
       <div className="grid grid-cols-1 md:grid-cols-2 gap-2">
         <div className="bg-white p-4 rounded-2xl shadow">

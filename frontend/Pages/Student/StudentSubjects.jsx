@@ -15,7 +15,7 @@ const StudentSubjects = () => {
     { id: 6, name: "Non-Credit Course", teacher: "Mr. Thapa" },
   ];
   return (
-    <div className="grid grid-cols-2 md:grid-cols-3 gap-4">
+    <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
       {subjectsData.map((subject) => (
         <div
           key={subject.id}

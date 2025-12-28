@@ -47,11 +47,11 @@ const StudentAssignments = () => {
   ];
 
   return (
-    <div className="grid grid-cols-1 md:grid-cols-3 gap-3  ">
+    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-3  ">
       {studentAssignments.map((assignment) => (
         <div
           key={assignment.id}
-          className="flex  flex-col bg-white p-3 gap-2 rounded-2xl shadow transition-all duration-300 hover:shadow-md h-32"
+          className="flex  flex-col bg-white p-3 gap-2 rounded-2xl shadow transition-all duration-300 hover:shadow-md "
         >
           <div className="flex  justify-between items-center">
             <div className="flex flex-col gap-1">
