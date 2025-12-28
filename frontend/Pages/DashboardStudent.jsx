@@ -37,7 +37,7 @@ const DashboardStudent = () => {
   return (
     <section>
       <Header title="Dashboard" />
-      <div className="p-6 flex flex-col gap-5">
+      <div className=" p-3 md:p-6 flex flex-col gap-5">
         <div>
           <span className="text-2xl font-semibold">Welcome Back, Palden!</span>
         </div>
@@ -73,7 +73,7 @@ const DashboardStudent = () => {
           </section>
 
           <section className="grid grid-cols-1 md:grid-cols-2 gap-5">
-            <div className="bg-white rounded-2xl shadow flex flex-col space-y-3.5 ">
+            <div className="bg-white rounded-2xl shadow flex p-4 flex-col space-y-3.5 ">
               <h3 className="font-semibold mb-4">Assignments Status</h3>
               <ResponsiveContainer width="100%" height={250}>
                 <BarChart data={data}>
@@ -84,7 +84,7 @@ const DashboardStudent = () => {
                 </BarChart>
               </ResponsiveContainer>
             </div>
-            <div className="bg-white rounded-2xl shadow">
+            <div className="bg-white rounded-2xl p-4 shadow">
               <h3 className="font-semibold mb-4">Exams Overview</h3>
 
               <ResponsiveContainer width="100%" height={250}>

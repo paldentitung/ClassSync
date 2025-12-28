@@ -61,7 +61,7 @@ const DashboardTeacher = () => {
   return (
     <section>
       <Header title="Dashboard" />
-      <div className="p-6 flex flex-col gap-5">
+      <div className=" p-3 md:p-6 flex flex-col gap-5">
         <div>
           <span className="text-2xl font-semibold">
             Welcome Back, Professor!

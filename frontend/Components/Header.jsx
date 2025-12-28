@@ -3,6 +3,7 @@ import { FaBell, FaUser, FaCog } from "react-icons/fa";
 import { SideBarContext } from "../Context/SidebarContext";
 import SideBar from "./SideBar";
 import { useNavigate } from "react-router-dom";
+import { FaBars } from "react-icons/fa";
 const Header = ({ title }) => {
   const { showSideBar, setShowSideBar } = useContext(SideBarContext);
   const navigate = useNavigate();
@@ -12,9 +13,7 @@ const Header = ({ title }) => {
         onClick={() => setShowSideBar(!showSideBar)}
         className="flex flex-col gap-1  md:hidden"
       >
-        <span className="w-12 h-2 bg-(--mainColor) rounded-md"></span>
-        <span className="w-12 h-2 bg-(--mainColor) rounded-md"></span>
-        <span className="w-12 h-2 bg-(--mainColor) rounded-md"></span>
+        <FaBars size={18} />
       </button>
       <div className="text-2xl font-semibold">{title}</div>
       <div className="flex gap-3 items-center">
