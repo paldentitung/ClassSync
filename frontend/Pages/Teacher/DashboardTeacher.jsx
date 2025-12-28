@@ -1,6 +1,6 @@
 import React from "react";
-import Header from "../Components/Header";
-import MainButton from "../Components/MainButton";
+import Header from "../../Components/Header";
+import MainButton from "../../Components/MainButton";
 import {
   FaBook,
   FaClipboardList,

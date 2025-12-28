@@ -1,8 +1,7 @@
-import React from "react";
+import React, { useContext } from "react";
 import MainLayout from "../MainLayout/MainLayout";
 import RoleSelection from "../Pages/RoleSelection";
-import DashboardStudent from "../Pages/DashboardStudent";
-import DashboardTeacher from "../Pages/DashboardTeacher";
+import Dashboard from "../Pages/Dashboard";
 import Timetable from "../Pages/Timetable";
 import Subjects from "../Pages/Subjects";
 import Assignments from "../Pages/Assignments";
@@ -11,27 +10,22 @@ import Exams from "../Pages/Exams";
 import Analytics from "../Pages/Analytics";
 import Settings from "../Pages/Settings";
 import { Route, Routes } from "react-router-dom";
+import { RoleContext } from "../Context/RoleContext";
 
 const App = () => {
+  const { role } = useContext(RoleContext);
   return (
     <Routes>
       <Route path="/" element={<RoleSelection />} />
       <Route
-        path="/dashboard/student"
+        path={`/dashboard/:${role}`}
         element={
           <MainLayout>
-            <DashboardStudent />
+            <Dashboard />
           </MainLayout>
         }
       />
-      <Route
-        path="/dashboard/teacher"
-        element={
-          <MainLayout>
-            <DashboardTeacher />
-          </MainLayout>
-        }
-      />
+
       <Route
         path="/timetable"
         element={
