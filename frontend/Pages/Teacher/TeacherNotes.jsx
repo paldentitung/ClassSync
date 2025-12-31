@@ -2,34 +2,7 @@ import React from "react";
 import MainButton from "../../Components/MainButton";
 import SecondaryButton from "../../Components/SecondaryButton";
 
-const TeacherNotes = () => {
-  const teacherNotes = [
-    {
-      id: 1,
-      title: "React Introduction",
-      subject: "Internet Technology",
-      date: "2025-01-10",
-    },
-    {
-      id: 2,
-      title: "OOP Basics",
-      subject: "Object Oriented Analysis & Design",
-      date: "2025-01-12",
-    },
-    {
-      id: 3,
-      title: "SQL Joins",
-      subject: "DBMS",
-      date: "2025-01-08",
-    },
-    {
-      id: 4,
-      title: "Management Principles",
-      subject: "Principles of Management",
-      date: "2025-01-15",
-    },
-  ];
-
+const TeacherNotes = ({ notes }) => {
   return (
     <div className="md:px-10 md:py-5 space-y-5">
       {/* Upload Area */}
@@ -50,7 +23,7 @@ const TeacherNotes = () => {
 
       {/* Notes Grid */}
       <div className="grid grid-cols-1  md:grid-cols-2 lg:grid-cols-4 gap-8">
-        {teacherNotes.map((note) => (
+        {notes.map((note) => (
           <div
             key={note.id}
             className="group bg-white rounded-2xl shadow-sm hover:shadow-md transition-all duration-300 overflow-hidden border border-gray-100 flex flex-col"

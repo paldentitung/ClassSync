@@ -1,8 +1,7 @@
+const { getAllNotes } = require("../controllers/notesContoller");
 const express = require("express");
-const { getAllExams } = require("../controllers/examsController");
-
 const router = express.Router();
 
-router.get("/", getAllExams);
+router.get("/", getAllNotes);
 
 module.exports = router;

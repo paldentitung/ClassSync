@@ -2,35 +2,13 @@ import React from "react";
 import MainButton from "../../Components/MainButton";
 import SecondaryButton from "../../Components/SecondaryButton";
 
-const StudentNotes = () => {
-  const studentNotes = [
-    {
-      id: 1,
-      title: "React Introduction",
-      subject: "Internet Technology",
-      date: "2025-01-10",
-    },
-    { id: 2, title: "SQL Joins", subject: "DBMS", date: "2025-01-08" },
-    {
-      id: 3,
-      title: "OOP Basics",
-      subject: "Object Oriented Analysis & Design",
-      date: "2025-01-12",
-    },
-    {
-      id: 4,
-      title: "Management Principles",
-      subject: "Principles of Management",
-      date: "2025-01-15",
-    },
-  ];
-
+const StudentNotes = ({ notes }) => {
   return (
     <div className="md:px-10 md:py-5">
       <h2 className="text-3xl font-bold text-gray-900 mb-8">Available Notes</h2>
 
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8">
-        {studentNotes.map((note) => (
+        {notes.map((note) => (
           <div
             key={note.id}
             className="group bg-white rounded-3xl shadow-md hover:shadow-lg transition overflow-hidden border border-gray-100 flex flex-col"
