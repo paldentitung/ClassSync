@@ -1,34 +1,10 @@
 import React from "react";
 import MainButton from "../../Components/MainButton";
 import SecondaryButton from "../../Components/SecondaryButton";
-const TeacherAssignment = () => {
-  const teacherAssignments = [
-    {
-      id: 1,
-      title: "React Basics",
-      subject: "Internet Technology",
-      dueDate: "2025-01-10",
-      submissions: 18,
-    },
-    {
-      id: 2,
-      title: "SQL Queries",
-      subject: "DBMS",
-      dueDate: "2025-01-08",
-      submissions: 20,
-    },
-    {
-      id: 3,
-      title: "Management Essay",
-      subject: "Principles of Management",
-      dueDate: "2025-01-12",
-      submissions: 15,
-    },
-  ];
-
+const TeacherAssignment = ({ assignments }) => {
   return (
     <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-3  ">
-      {teacherAssignments.map((assignment) => (
+      {assignments.map((assignment) => (
         <div
           key={assignment.id}
           className="flex  flex-col bg-white p-4 gap-3 rounded-2xl shadow transition-all duration-300 hover:shadow-md "
