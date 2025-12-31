@@ -1,37 +1,18 @@
 import React from "react";
 import MainButton from "../../Components/MainButton";
 
-const StudentExams = () => {
-  const studentExams = [
-    {
-      id: 1,
-      title: "Mid Term Exam",
-      subject: "Internet Technology",
-      date: "2025-02-10",
-      time: "10:00 AM",
-      status: "Upcoming",
-    },
-    {
-      id: 2,
-      title: "Unit Test",
-      subject: "DBMS",
-      date: "2025-02-05",
-      time: "1:00 PM",
-      status: "Completed",
-    },
-  ];
-
+const StudentExams = ({ exams }) => {
   return (
     <div className="">
       <h2 className="text-3xl font-bold mb-8">My Exams</h2>
       <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-        {studentExams.map((exam) => (
+        {exams.map((exam) => (
           <div
             key={exam.id}
             className="bg-white p-5 rounded-2xl shadow hover:shadow-md transition flex flex-col gap-3"
           >
             <div>
-              <h3 className="text-lg font-semibold">{exam.title}</h3>
+              <h3 className="text-lg font-semibold">{exam.name}</h3>
               <p className="text-sm text-gray-600">{exam.subject}</p>
             </div>
 
