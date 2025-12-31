@@ -1,1 +1,42 @@
-[]
+[
+  {
+    "id": 1,
+    "name": "Mathematics Final Exam",
+    "subject": "Mathematics",
+    "date": "2025-12-31",
+    "duration": "3 hours",
+    "totalMarks": 100
+  },
+  {
+    "id": 2,
+    "name": "Science Midterm Exam",
+    "subject": "Science",
+    "date": "2026-01-05",
+    "duration": "2 hours",
+    "totalMarks": 80
+  },
+  {
+    "id": 3,
+    "name": "English Grammar Test",
+    "subject": "English",
+    "date": "2026-01-10",
+    "duration": "1.5 hours",
+    "totalMarks": 50
+  },
+  {
+    "id": 4,
+    "name": "History Final Exam",
+    "subject": "History",
+    "date": "2026-01-15",
+    "duration": "3 hours",
+    "totalMarks": 100
+  },
+  {
+    "id": 5,
+    "name": "Computer Science Practical Exam",
+    "subject": "Computer Science",
+    "date": "2026-01-20",
+    "duration": "2 hours",
+    "totalMarks": 70
+  }
+]
