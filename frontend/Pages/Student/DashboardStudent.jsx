@@ -7,7 +7,7 @@ import {
   FaTasks,
   FaCalendar,
   FaFileAlt,
-  FaCalendarAlt,
+  FaCalendarAlt,  
   FaBell,
 } from "react-icons/fa";
 import {
@@ -95,6 +95,7 @@ const DashboardStudent = () => {
                     cx="50%"
                     cy="50%"
                     outerRadius={90}
+                    label
                   >
                     {examData.map((data, index) => (
                       <Cell
