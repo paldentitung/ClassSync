@@ -24,7 +24,21 @@ export const createExam = async (examData) => {
     throw error;
   }
 };
-
+export const updateExam = async (id, data) => {
+  try {
+    const res = await fetch(`http://localhost:3000/api/exams/${id}`, {
+      method: "PUT",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(data),
+    });
+    const result = await res.json();
+    return result.exam;
+  } catch (error) {
+    alert("error" + error);
+  }
+};
 export const deleteExam = async (id) => {
   try {
     const res = await fetch(`http://localhost:3000/api/exams/${id}`, {

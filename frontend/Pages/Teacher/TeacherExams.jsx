@@ -1,7 +1,6 @@
-import React from "react";
+import React, { useState, useContext } from "react";
 import MainButton from "../../Components/MainButton";
 import SecondaryButton from "../../Components/SecondaryButton";
-import { useState } from "react";
 import {
   FaCalendarAlt,
   FaClock,
@@ -9,13 +8,12 @@ import {
   FaTimesCircle,
 } from "react-icons/fa";
 import Modal from "../../Components/Modal";
-import { useContext } from "react";
 import { ModalContext } from "../../Context/ModalContext";
-import { useEffect } from "react";
-import { createExam, deleteExam } from "../../Services/examsApi";
+import { createExam, deleteExam, updateExam } from "../../Services/examsApi";
+
 const TeacherExams = ({ exams, setExams }) => {
   const { setShowModal } = useContext(ModalContext);
-
+  const [editingExam, setEditingExam] = useState(null);
   const [formData, setFormData] = useState({
     name: "",
     subject: "",
@@ -26,14 +24,50 @@ const TeacherExams = ({ exams, setExams }) => {
     status: "Upcoming",
   });
 
+  // Convert 12-hour format to 24-hour format
+  const to24Hour = (timeStr) => {
+    if (!timeStr) return "";
+    const [time, modifier] = timeStr.split(" ");
+    if (!modifier) return time; // already 24-hour
+    let [hours, minutes] = time.split(":").map(Number);
+    if (modifier === "PM" && hours !== 12) hours += 12;
+    if (modifier === "AM" && hours === 12) hours = 0;
+    return `${hours.toString().padStart(2, "0")}:${minutes
+      .toString()
+      .padStart(2, "0")}`;
+  };
+
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
+  };
+
+  const handleEdit = (exam) => {
+    setEditingExam(exam);
+    setFormData({
+      name: exam.name || "",
+      subject: exam.subject || "",
+      date: exam.date || "",
+      time: to24Hour(exam.time) || "",
+      duration: exam.duration || "",
+      totalMarks: exam.totalMarks || "",
+      status: exam.status || "Upcoming",
+    });
+    setShowModal(true);
   };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const res = await createExam(formData);
+      if (editingExam) {
+        const updatedExam = await updateExam(editingExam.id, formData);
+        setExams((prev) =>
+          prev.map((exam) => (exam.id === editingExam.id ? updatedExam : exam))
+        );
+        setEditingExam(null);
+      } else {
+        const res = await createExam(formData);
+        setExams((prev) => [...prev, res.exam]);
+      }
 
       setFormData({
         name: "",
@@ -45,18 +79,16 @@ const TeacherExams = ({ exams, setExams }) => {
         status: "Upcoming",
       });
 
-      setExams((prev) => [...prev, res.exam]);
-
       setShowModal(false);
     } catch (error) {
-      alert("error" + error);
+      alert("Error: " + error);
     }
   };
 
   const handleDelete = async (id) => {
     try {
       if (!window.confirm("Are you sure you want to delete this exam?")) return;
-      const examToDelete = await deleteExam(id);
+      await deleteExam(id);
       setExams((prev) => prev.filter((exam) => exam.id !== id));
     } catch (error) {
       alert(error);
@@ -72,6 +104,16 @@ const TeacherExams = ({ exams, setExams }) => {
           <MainButton
             name="Create Exam"
             onClick={() => {
+              setEditingExam(null);
+              setFormData({
+                name: "",
+                subject: "",
+                date: "",
+                time: "",
+                duration: "",
+                totalMarks: "",
+                status: "Upcoming",
+              });
               setShowModal(true);
             }}
           />
@@ -133,15 +175,21 @@ const TeacherExams = ({ exams, setExams }) => {
                   className="flex-1"
                   onClick={() => handleDelete(exam.id)}
                 />
-                <SecondaryButton name="Edit" className="flex-1" />
+                <SecondaryButton
+                  name="Edit"
+                  className="flex-1"
+                  onClick={() => handleEdit(exam)}
+                />
               </div>
             </div>
           ))}
         </div>
       </div>
+
+      {/* Modal */}
       <Modal>
         <h3 className="text-2xl font-semibold mb-6 text-center">
-          Create New Exam
+          {editingExam ? "Edit Exam" : "Create New Exam"}
         </h3>
 
         <form onSubmit={handleSubmit} className="flex flex-col gap-5">
@@ -186,7 +234,6 @@ const TeacherExams = ({ exams, setExams }) => {
                 required
               />
             </div>
-
             <div className="flex flex-col gap-1">
               <label className="text-sm font-medium">Start Time</label>
               <input
@@ -214,7 +261,6 @@ const TeacherExams = ({ exams, setExams }) => {
                 required
               />
             </div>
-
             <div className="flex flex-col gap-1">
               <label className="text-sm font-medium">Total Marks</label>
               <input
@@ -251,7 +297,10 @@ const TeacherExams = ({ exams, setExams }) => {
               type="button"
               onClick={() => setShowModal(false)}
             />
-            <MainButton name="Create Exam" type="submit" />
+            <MainButton
+              name={editingExam ? "Update Exam" : "Create Exam"}
+              type="submit"
+            />
           </div>
         </form>
       </Modal>
