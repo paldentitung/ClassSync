@@ -26,7 +26,7 @@ const Exams = () => {
         {role === "student" ? (
           <StudentExams exams={exams} />
         ) : (
-          <TeacherExams exams={exams} />
+          <TeacherExams exams={exams} setExams={setExams} />
         )}
       </div>
     </div>

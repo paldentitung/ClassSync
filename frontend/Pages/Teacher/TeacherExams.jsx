@@ -13,7 +13,7 @@ import { useContext } from "react";
 import { ModalContext } from "../../Context/ModalContext";
 import { useEffect } from "react";
 import { createExam } from "../../Services/examsApi";
-const TeacherExams = ({ exams }) => {
+const TeacherExams = ({ exams, setExams }) => {
   const { setShowModal } = useContext(ModalContext);
 
   const [formData, setFormData] = useState({
@@ -44,6 +44,8 @@ const TeacherExams = ({ exams }) => {
         totalMarks: "",
         status: "Upcoming",
       });
+
+      setExams((prev) => [...prev, res.exam]);
 
       setShowModal(false);
     } catch (error) {
