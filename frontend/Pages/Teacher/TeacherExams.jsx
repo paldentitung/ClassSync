@@ -10,6 +10,7 @@ import {
 import Modal from "../../Components/Modal";
 import { ModalContext } from "../../Context/ModalContext";
 import { createExam, deleteExam, updateExam } from "../../Services/examsApi";
+import toast from "react-hot-toast";
 
 const TeacherExams = ({ exams, setExams }) => {
   const { setShowModal } = useContext(ModalContext);
@@ -63,10 +64,13 @@ const TeacherExams = ({ exams, setExams }) => {
         setExams((prev) =>
           prev.map((exam) => (exam.id === editingExam.id ? updatedExam : exam))
         );
+
+        toast.success("Exam updated successfully!");
         setEditingExam(null);
       } else {
         const res = await createExam(formData);
         setExams((prev) => [...prev, res.exam]);
+        toast.success("Exam created successfully!");
       }
 
       setFormData({
@@ -90,6 +94,7 @@ const TeacherExams = ({ exams, setExams }) => {
       if (!window.confirm("Are you sure you want to delete this exam?")) return;
       await deleteExam(id);
       setExams((prev) => prev.filter((exam) => exam.id !== id));
+      toast.success("Exam deleted successfully!");
     } catch (error) {
       alert(error);
     }

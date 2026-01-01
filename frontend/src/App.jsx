@@ -11,79 +11,82 @@ import Analytics from "../Pages/Analytics";
 import Settings from "../Pages/Settings";
 import { Route, Routes } from "react-router-dom";
 import { RoleContext } from "../Context/RoleContext";
-
+import { Toaster } from "react-hot-toast";
 const App = () => {
   const { role } = useContext(RoleContext);
   return (
-    <Routes>
-      <Route path="/" element={<RoleSelection />} />
-      <Route
-        path={`/dashboard/:${role}`}
-        element={
-          <MainLayout>
-            <Dashboard />
-          </MainLayout>
-        }
-      />
+    <>
+      <Toaster position="top-right" />
+      <Routes>
+        <Route path="/" element={<RoleSelection />} />
+        <Route
+          path={`/dashboard/:${role}`}
+          element={
+            <MainLayout>
+              <Dashboard />
+            </MainLayout>
+          }
+        />
 
-      <Route
-        path="/timetable"
-        element={
-          <MainLayout>
-            <Timetable />
-          </MainLayout>
-        }
-      />
-      <Route
-        path="/subjects"
-        element={
-          <MainLayout>
-            <Subjects />
-          </MainLayout>
-        }
-      />
-      <Route
-        path="/assignments"
-        element={
-          <MainLayout>
-            <Assignments />
-          </MainLayout>
-        }
-      />
-      <Route
-        path="/notes"
-        element={
-          <MainLayout>
-            <Notes />
-          </MainLayout>
-        }
-      />
-      <Route
-        path="/exams"
-        element={
-          <MainLayout>
-            <Exams />
-          </MainLayout>
-        }
-      />
+        <Route
+          path="/timetable"
+          element={
+            <MainLayout>
+              <Timetable />
+            </MainLayout>
+          }
+        />
+        <Route
+          path="/subjects"
+          element={
+            <MainLayout>
+              <Subjects />
+            </MainLayout>
+          }
+        />
+        <Route
+          path="/assignments"
+          element={
+            <MainLayout>
+              <Assignments />
+            </MainLayout>
+          }
+        />
+        <Route
+          path="/notes"
+          element={
+            <MainLayout>
+              <Notes />
+            </MainLayout>
+          }
+        />
+        <Route
+          path="/exams"
+          element={
+            <MainLayout>
+              <Exams />
+            </MainLayout>
+          }
+        />
 
-      <Route
-        path="/analytics"
-        element={
-          <MainLayout>
-            <Analytics />
-          </MainLayout>
-        }
-      />
-      <Route
-        path="/settings"
-        element={
-          <MainLayout>
-            <Settings />
-          </MainLayout>
-        }
-      />
-    </Routes>
+        <Route
+          path="/analytics"
+          element={
+            <MainLayout>
+              <Analytics />
+            </MainLayout>
+          }
+        />
+        <Route
+          path="/settings"
+          element={
+            <MainLayout>
+              <Settings />
+            </MainLayout>
+          }
+        />
+      </Routes>
+    </>
   );
 };
 
