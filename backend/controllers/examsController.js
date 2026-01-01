@@ -60,6 +60,50 @@ exports.createExam = (req, res) => {
   });
 };
 
+exports.updateExam = (req, res) => {
+  const id = parseInt(req.params.id);
+  const exams = getExams();
+
+  const ExamToBeUpdate = exams.findIndex((exam) => exam.id === id);
+
+  if (ExamToBeUpdate === -1) {
+    return res.status(404).json({
+      message: "Not found",
+    });
+  }
+
+  const existingExam = exams[ExamToBeUpdate];
+  const {
+    name,
+    subject,
+    date,
+    time,
+    duration,
+    totalMarks,
+    isCompleted,
+    status,
+  } = req.body;
+
+  exams[ExamToBeUpdate] = {
+    ...existingExam,
+    name: name ?? existingExam.name,
+    subject: subject ?? existingExam.subject,
+    date: date ?? existingExam.date,
+    time: time ?? existingExam.time,
+    duration: duration ?? existingExam.duration,
+    totalMarks: totalMarks ?? existingExam.totalMarks,
+    isCompleted: isCompleted ?? existingExam.isCompleted,
+    status: status ?? existingExam.status,
+  };
+
+  savedExams(exams);
+
+  res.status(200).json({
+    message: "Exam updated successfully",
+    exam: exams[ExamToBeUpdate],
+  });
+};
+
 exports.deleteExam = (req, res) => {
   const id = parseInt(req.params.id);
   const exams = getExams();
