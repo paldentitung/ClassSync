@@ -118,7 +118,7 @@ const TeacherExams = ({ exams, setExams }) => {
 
               {/* Action Buttons */}
               <div className="flex gap-3 mt-auto">
-                <MainButton name="Submissions" className="flex-1" />
+                <MainButton name="Delete" className="flex-1" />
                 <SecondaryButton name="Edit" className="flex-1" />
               </div>
             </div>

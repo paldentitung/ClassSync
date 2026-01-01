@@ -59,3 +59,18 @@ exports.createExam = (req, res) => {
     exam: newExam,
   });
 };
+
+exports.deleteExam = (req, res) => {
+  const id = parseInt(req.params.id);
+  const exams = getExams();
+  const idx = exams.findIndex((exam) => exam.id === id);
+
+  if (idx === -1) {
+    return res.status(404).json({ message: "Not found" });
+  }
+
+  exams.splice(idx, 1);
+  savedExams(exams);
+
+  res.status(200).json({ message: "Exam Deleted" });
+};
