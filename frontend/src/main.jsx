@@ -5,13 +5,16 @@ import App from "./App.jsx";
 import { BrowserRouter } from "react-router-dom";
 import { RoleProvider } from "../Context/RoleContext.jsx";
 import { SidebarProvider } from "../Context/SidebarContext.jsx";
+import { ModalProvider } from "../Context/ModalContext.jsx";
 createRoot(document.getElementById("root")).render(
   <StrictMode>
     <BrowserRouter>
       <RoleProvider>
-        <SidebarProvider>
-          <App />
-        </SidebarProvider>
+        <ModalProvider>
+          <SidebarProvider>
+            <App />
+          </SidebarProvider>
+        </ModalProvider>
       </RoleProvider>
     </BrowserRouter>
   </StrictMode>
