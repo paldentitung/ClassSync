@@ -12,7 +12,7 @@ import Modal from "../../Components/Modal";
 import { useContext } from "react";
 import { ModalContext } from "../../Context/ModalContext";
 import { useEffect } from "react";
-import { createExam } from "../../Services/examsApi";
+import { createExam, deleteExam } from "../../Services/examsApi";
 const TeacherExams = ({ exams, setExams }) => {
   const { setShowModal } = useContext(ModalContext);
 
@@ -50,6 +50,16 @@ const TeacherExams = ({ exams, setExams }) => {
       setShowModal(false);
     } catch (error) {
       alert("error" + error);
+    }
+  };
+
+  const handleDelete = async (id) => {
+    try {
+      if (!window.confirm("Are you sure you want to delete this exam?")) return;
+      const examToDelete = await deleteExam(id);
+      setExams((prev) => prev.filter((exam) => exam.id !== id));
+    } catch (error) {
+      alert(error);
     }
   };
 
@@ -118,7 +128,11 @@ const TeacherExams = ({ exams, setExams }) => {
 
               {/* Action Buttons */}
               <div className="flex gap-3 mt-auto">
-                <MainButton name="Delete" className="flex-1" />
+                <MainButton
+                  name="Delete"
+                  className="flex-1"
+                  onClick={() => handleDelete(exam.id)}
+                />
                 <SecondaryButton name="Edit" className="flex-1" />
               </div>
             </div>
