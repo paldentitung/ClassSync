@@ -25,7 +25,10 @@ const Assignments = () => {
         {role === "student" ? (
           <StudentAssignments assignments={assignments} />
         ) : (
-          <TeacherAssignment assignments={assignments} />
+          <TeacherAssignment
+            assignments={assignments}
+            setAssignments={setAssignments}
+          />
         )}
       </div>
     </div>

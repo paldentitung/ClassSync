@@ -6,7 +6,7 @@ import Modal from "../../Components/Modal";
 import { useEffect } from "react";
 import { createAssignment } from "../../Services/assignmentsApi";
 import { useState } from "react";
-const TeacherAssignment = ({ assignments }) => {
+const TeacherAssignment = ({ assignments, setAssignments }) => {
   const { setShowModal } = useContext(ModalContext);
   const [formData, setFormData] = useState({
     title: "",
@@ -17,8 +17,17 @@ const TeacherAssignment = ({ assignments }) => {
   });
   const handleSubmit = async (e) => {
     e.preventDefault();
-    await createAssignment(formData);
+    const res = await createAssignment(formData);
+
+    setAssignments((prev) => [...prev, res.assignment]);
     setShowModal(false);
+    setFormData({
+      title: "",
+      subject: "",
+      dueDate: "",
+      description: "",
+      status: "Active",
+    });
   };
 
   const handleChange = (e) => {
