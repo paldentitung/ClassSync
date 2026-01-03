@@ -1,6 +1,5 @@
 const fs = require("fs");
 const file = require("path");
-const { json } = require("stream/consumers");
 
 const filePath = file.join(__dirname, "../data/assignmentsData.json");
 
@@ -10,17 +9,17 @@ const getAssignment = () => {
 };
 
 const saveAssignments = (assignment) => {
-  fs.writeFileSync(filePath, JSON.stringify(assignment, null, 2));
+  fs.writeFileSync(filePath, JSON.stringify(assignment, null, 2), "utf8");
 };
-exports.getAllAssignment = (req, res) => {
+exports.getAllAssignments = (req, res) => {
   const data = getAssignment();
   return res.json(data);
 };
 
 exports.createAssignment = (req, res) => {
-  const { title, subject, dueDate, assignmentStatus } = req.body;
-  if (!title || !subject || !dueDate || !assignmentStatus) {
-    res.status(400).json({
+  const { title, subject, dueDate, description, status } = req.body;
+  if (!title || !subject || !dueDate || !description || !status) {
+    return res.status(400).json({
       message: "Invalid data",
     });
   }
@@ -32,7 +31,8 @@ exports.createAssignment = (req, res) => {
     title,
     subject,
     dueDate,
-    assignmentStatus,
+    description,
+    status,
   };
 
   data.push(newAssignment);

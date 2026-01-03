@@ -1,10 +1,10 @@
 const express = require("express");
 const {
-  getAllAssignment,
+  getAllAssignments,
   createAssignment,
 } = require("../controllers/assignmentsContoller");
 const router = express.Router();
 
-router.get("/", getAllAssignment);
+router.get("/", getAllAssignments);
 router.post("/", createAssignment);
 module.exports = router;
