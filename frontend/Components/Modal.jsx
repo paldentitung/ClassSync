@@ -9,7 +9,7 @@ const Modal = ({ children }) => {
     <>
       {showModal && (
         <div className="h-full w-full fixed inset-0 bg-black/30 text-white flex justify-center items-center z-50">
-          <div className="w-full max-w-200 h-auto bg-white text-black p-4 rounded-2xl  ">
+          <div className="w-full max-w-250 h-auto bg-white text-black p-4 rounded-2xl  ">
             {children}
           </div>
           {/* modal close button */}

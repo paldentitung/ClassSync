@@ -46,3 +46,26 @@ exports.createAssignment = (req, res) => {
     assignment: newAssignment,
   });
 };
+exports.deleteAssignments = (req, res) => {
+  const id = parseInt(req.params.id);
+  const assignment = getAssignment();
+  const assignmentIndex = assignment.findIndex((a) => a.id === id);
+
+  if (assignmentIndex === -1) {
+    return res.status(404).json({
+      message: "Not found",
+    });
+  }
+
+  // delete the  assignment which user have selected
+  assignment.splice(assignmentIndex, 1);
+
+  // upated the data file
+  saveAssignments(assignment);
+
+  const assignmentToDelete = assignment[assignmentIndex];
+  res.status(200).json({
+    message: "Assignment delete",
+    assignmentToDelete: assignmentToDelete,
+  });
+};
