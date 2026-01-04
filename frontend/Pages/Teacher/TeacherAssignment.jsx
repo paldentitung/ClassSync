@@ -6,6 +6,9 @@ import Modal from "../../Components/Modal";
 import { useEffect } from "react";
 import { createAssignment } from "../../Services/assignmentsApi";
 import { useState } from "react";
+import toast from "react-hot-toast";
+import { deleteAssignments } from "../../Services/assignmentsApi";
+import { FaTrash } from "react-icons/fa";
 const TeacherAssignment = ({ assignments, setAssignments }) => {
   const { setShowModal } = useContext(ModalContext);
   const [formData, setFormData] = useState({
@@ -20,6 +23,8 @@ const TeacherAssignment = ({ assignments, setAssignments }) => {
     const res = await createAssignment(formData);
 
     setAssignments((prev) => [...prev, res.assignment]);
+    toast.success("Assignment created");
+
     setShowModal(false);
     setFormData({
       title: "",
@@ -35,6 +40,18 @@ const TeacherAssignment = ({ assignments, setAssignments }) => {
       ...formData,
       [e.target.name]: e.target.value,
     });
+  };
+
+  const handleAssignments = async (id) => {
+    try {
+      if (!window.confirm("Are you sure you want to delete this assignment"))
+        return;
+      await deleteAssignments(id);
+      setAssignments((prev) => prev.filter((a) => a.id !== id));
+      toast.success("Assignment Delete");
+    } catch (error) {
+      alert(error);
+    }
   };
 
   return (
@@ -53,13 +70,19 @@ const TeacherAssignment = ({ assignments, setAssignments }) => {
               key={assignment.id}
               className="flex  flex-col bg-white p-4 gap-3 rounded-2xl shadow transition-all duration-300 hover:shadow-md "
             >
-              <div className="flex flex-col gap-1">
-                <span className="font-semibold text-[18px]">
-                  {assignment.title}
-                </span>
-                <span className="text-gray-700 text-sm">
-                  {assignment.subject}
-                </span>
+              <div className="flex justify-between items-center">
+                <div className="flex flex-col gap-1">
+                  <span className="font-semibold text-[18px]">
+                    {assignment.title}
+                  </span>
+                  <span className="text-gray-700 text-sm">
+                    {assignment.subject}
+                  </span>
+                </div>
+
+                <div onClick={() => handleAssignments(assignment.id)}>
+                  <FaTrash size={18} color="#c7251a" />
+                </div>
               </div>
 
               <div className="flex justify-between items-center text-gray-400 text-sm flex-1">

@@ -22,3 +22,14 @@ export const createAssignment = async (data) => {
     alert("error" + error);
   }
 };
+export const deleteAssignments = async (id) => {
+  try {
+    const res = await fetch(`http://localhost:3000/api/assignments/${id}`, {
+      method: "DELETE",
+    });
+    await res.json();
+    return res;
+  } catch (error) {
+    alert("error" + error);
+  }
+};
